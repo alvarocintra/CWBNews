@@ -1,11 +1,12 @@
 <?php
 
-    require_once "DAO.php";
+    //require_once "DAO.php";
     require_once "controle.php";
 
     $newsImg = "";
-    if(!empty($_FILES)) {
-        $caminho_arquivo = "D:\\xampp\\htdocs\\sistema\\img\\";
+    if(!empty($_FILES)) 
+    {
+        $caminho_arquivo = "D:\\xampp\\htdocs\\cwbnews\\img\\";
          
         $nome_arquivo = $_FILES['newsImg']['name'];
          
@@ -22,11 +23,13 @@
     $autor = "";    
     $dataPostagem = "";
     $destaque = "";
-    $categoria = "";
+    $id_categoria = "";
     
-    if (!empty($_GET)) {
+    if (!empty($_GET)) 
+    {
         $id = $_GET['id'];
-        if ($_GET['acao'] == 'carregar') {
+        if ($_GET['acao'] == 'carregar') 
+        {
             $noticia = buscarNoticia($id);
             $titulo = $noticia['titulo'];
             $resumo = $noticia['resumo'];
@@ -36,26 +39,32 @@
             $dataPostagem = $noticia['dataPostagem'];
             $fonte = $noticia['fonte'];
             $destaque = $noticia['destaque'];
-            $categoria = $noticia['categoria'];            
+            $id_categoria = $noticia['id_categoria'];            
         }
-        if ($_GET['acao'] == 'excluir') {
+        if ($_GET['acao'] == 'excluir') 
+        {
             excluirNoticia($id);
         }
     }
 
    // print_r($_POST);
-    if(!empty($_POST)) {
+    if(!empty($_POST)) 
+    {
         $_POST['newsImg'] = $newsImg;
         
-        if(empty($_POST['id'])) { 
+        if(empty($_POST['id'])) 
+        { 
             salvarNoticia($_POST);
         }
-        else {
+        else 
+        {
             editarNoticia($_POST);
         }
     }
 
     $noticias = listarNoticias();
+
+    $categorias = listarCategorias();
 
    // print_r($clientes);
 
@@ -84,9 +93,11 @@
         include_once("login.php");
     }
     else 
-    { ?>
+    { 
+?>
 
 <h1>Cadastro de Noticia</h1>
+<h5><a href="logout.php">Logout</a></h5>
 <form action="addNews.php" method="POST"
     enctype="multipart/form-data">
 <input type="hidden" name="id" value="<?=$id?>"/>
@@ -110,6 +121,14 @@
     <input type="textarea" name="noticiaCompleta" class="form-control" 
     id="noticiaCompleta" placeholder="Digite a notícia completa"    
     value="<?=$noticiaCompleta?>">
+</div>
+<div class="form-group">
+    <label for="id_categoria">Categoria</label>
+    <select name="id_categoria" id="id_categoria" class="form-control">
+    <?php foreach ($categorias as $categoria) { ?>
+    <option value="<?=$categoria['id']?>"><?=$categoria['nomeCategoria']?></option>
+    <?php } ?>
+    </select>
 </div>
 <div class="form-group">
     <label for="fonte">Fonte</label>
@@ -136,24 +155,9 @@
     <label for="destaque">Destaque</label>
     <select class="form-control" name="destaque" class="form-control" 
     id="destaque" placeholder="Notícia em destaque?"
-    value="<?=$destaque?>"
-    >
-    <option>SIM</option>
-    <option>NÃO</option>
-    </select>
-</div>
-<div class="form-group">
-    <label for="categoria">Categoria</label>
-    <select class="form-control" name="categoria" class="form-control" 
-    id="categoria" placeholder="Selecione a categoria"
-    value="<?=$categoria?>"
-    >
-    <option>Locais</option>
-    <option>Brasil</option>
-    <option>Mundo</option>
-    <option>Futebol</option>
-    <option>Basquete</option>
-    <option>Entrenterimento</option>
+    value="<?=$destaque?>">
+    <option value="1">SIM</option>
+    <option value="0">NÃO</option>
     </select>
 </div>
 <div class="form-group">
@@ -180,11 +184,11 @@
         <td><?=$noticia['id']?></td>        
         <td><?=$noticia['titulo']?></td>        
         <td><a href="addNews.php?acao=carregar&id=<?=$noticia['id']?>"
-         class="btn btn-primary">Carregar</a>
-         </td>     
+        class="btn btn-primary">Carregar</a>
+        </td>     
         <td>
         <a href="addNews.php?acao=excluir&id=<?=$noticia['id']?>"
-         class="btn btn-primary"
+         class="btn btn-danger"
          onclick="return confirm('Você está certo disso?');">Excluir</a>        
         </td>     
     </tr>

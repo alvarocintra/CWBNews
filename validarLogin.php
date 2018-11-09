@@ -17,7 +17,6 @@ if(!empty($retorno))
     $_SESSION['adm'] = $adm; 
     
     header("location: session.php");
-    //echo "Olá Sr(a) ".$cliente['nome'].", seja bem-vindo.";
 }
 else 
 {
@@ -27,7 +26,8 @@ else
 ?>
 
 
-<?php /* if (isset($_SESSION['id'])){
+<?php /* if (isset($_SESSION['id']))
+{
     //mostra informações
 }
 else

@@ -5,7 +5,8 @@
     <link href="css/navbar_sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="container" style="width:100px;">
+</div>
 <div class="container" id="container">
     <div class="row">
         <div class="col-sm-4 offset-sm-4 text center shadow-lg p-4 mb-4 rounded">
