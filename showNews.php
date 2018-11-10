@@ -45,7 +45,7 @@ if (!empty($_GET))
                 echo '<h3 class="text-danger">Esportes</h3>';
             }            
         ?>
-        
+    </div>
     <div class="col-md-12">
         <h1><?=$noticia['titulo']?></h1>
     </div>    
