@@ -71,7 +71,7 @@
 ?>
 <html>
 <head>
-    <title>Cadastro</title>
+    <title>Cadastro de Notícias</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/navbar_sticky-footer-navbar.css" rel="stylesheet">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -79,14 +79,14 @@
 <body >
 
 <?php
-    //include_once("header.php");
+    include_once("header.php");
 ?>
 
 <main role="main" class="container">
 
 
 <?php
-    session_start();
+    //session_start();
 
     if (!isset($_SESSION['id']))
     {
@@ -95,106 +95,112 @@
     else 
     { 
 ?>
-
-<h1>Cadastro de Noticia</h1>
-<h5><a href="logout.php">Logout</a></h5>
-<form action="addNews.php" method="POST"
-    enctype="multipart/form-data">
-<input type="hidden" name="id" value="<?=$id?>"/>
-<img src="<?=$newsImg?>" class="rounded-circle"/>
-<div class="form-group">
-    <label for="titulo">Titulo</label>
-    <input type="text" name="titulo" class="form-control" 
-    id="titulo" placeholder="Digite o título"
-    value="<?=$titulo?>"
-    required >
+<div class="container">
+    <div class="form-group text-center">
+        <h1>Cadastro de Noticia</h1>
+    </div>
+    <form action="addNews.php" method="POST"
+        enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?=$id?>"/>
+    <div class="form-group">
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo" class="form-control" 
+        id="titulo" placeholder="Digite o título"
+        value="<?=$titulo?>"
+        required 
+        >
+    </div>
+    <div class="form-group">
+        <label for="resumo">Resumo</label>
+        <input type="text" name="resumo" class="form-control" 
+        id="resumo" placeholder="Digite o resumo"
+        value="<?=$resumo?>"
+        >
+    </div>
+    <div class="form-group">
+        <label for="noticiaCompleta">Notícia Completa</label>
+        <input type="text" id="noticiaCompleta" name="noticiaCompleta" class="form-control" 
+        placeholder="Digite a notícia completa" value="<?=$noticiaCompleta?>" 
+        >
+        <??>
+    </div>
+    <div class="form-group">
+        <label for="id_categoria">Categoria</label>
+        <select name="id_categoria" id="id_categoria" class="form-control">
+        <?php foreach ($categorias as $categoria) { ?>
+        <option value="<?=$categoria['id']?>"><?=$categoria['nomeCategoria']?></option>
+        <?php } ?>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="fonte">Fonte</label>
+        <input type="text" name="fonte" class="form-control" 
+        id="fonte" placeholder="Digite a fonte"
+        value="<?=$fonte?>"
+         >
+    </div>
+    <div class="form-group">
+        <label for="autor">Autor</label>
+        <input type="text" name="autor" class="form-control" 
+        id="autro" placeholder="Digite o autor"
+        value="<?=$autor?>"
+         >
+    </div>
+    <div class="form-group">
+        <label for="dataPostagem">Data de Postagem</label>
+        <input type="date" name="dataPostagem" class="form-control" 
+        id="dataPostagem" placeholder="Digite a data de postagem"
+        value="<?=$dataPostagem?>"
+        >
+    </div>
+    <div class="form-group">
+        <label for="destaque">Destaque</label>
+        <select class="form-control" name="destaque" class="form-control" 
+        id="destaque" placeholder="Notícia em destaque?"
+        value="<?=$destaque?>">
+        <option value="1">SIM</option>
+        <option value="0">NÃO</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="newsImg">Imagem</label>
+        <input type="file" name="newsImg" class="form-control" 
+        id="newsImg">
+    </div>
+    <div class="form-group text-center">
+        <img src="<?=$newsImg?>" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+    </div>
+    </form>
 </div>
-<div class="form-group">
-    <label for="resumo">Resumo</label>
-    <input type="text" name="resumo" class="form-control" 
-    id="resumo" placeholder="Digite o resumo"
-    value="<?=$resumo?>"
-     >
-</div>
-
-<div class="form-group">
-    <label for="noticiaCompleta">Noticia Completa</label>
-    <textarea id="noticiaCompleta" name="noticiaCompleta" class="form-control" 
-    placeholder="Digite a notícia completa" value="<?=$noticiaCompleta?>" 
-    onkeyup="countChar(this)">
-    </textarea>
-</div>
-<div class="form-group">
-    <label for="id_categoria">Categoria</label>
-    <select name="id_categoria" id="id_categoria" class="form-control">
-    <?php foreach ($categorias as $categoria) { ?>
-    <option value="<?=$categoria['id']?>"><?=$categoria['nomeCategoria']?></option>
-    <?php } ?>
-    </select>
-</div>
-<div class="form-group">
-    <label for="fonte">Fonte</label>
-    <input type="text" name="fonte" class="form-control" 
-    id="fonte" placeholder="Digite a fonte"
-    value="<?=$fonte?>"
-     >
-</div>
-<div class="form-group">
-    <label for="autor">Autor</label>
-    <input type="text" name="autor" class="form-control" 
-    id="autro" placeholder="Digite o autor"
-    value="<?=$autor?>"
-     >
-</div>
-<div class="form-group">
-    <label for="dataPostagem">Data de Postagem</label>
-    <input type="date" name="dataPostagem" class="form-control" 
-    id="dataPostagem" placeholder="Digite a data de postagem"
-    value="<?=$dataPostagem?>"
-    >
-</div>
-<div class="form-group">
-    <label for="destaque">Destaque</label>
-    <select class="form-control" name="destaque" class="form-control" 
-    id="destaque" placeholder="Notícia em destaque?"
-    value="<?=$destaque?>">
-    <option value="1">SIM</option>
-    <option value="0">NÃO</option>
-    </select>
-</div>
-<div class="form-group">
-    <label for="newsImg">Imagem</label>
-    <input type="file" name="newsImg" class="form-control" 
-    id="newsImg">
-</div>
-<input type="submit" value="Salvar" class="btn btn-primary" />
-</form>
-
+<div class="container">
 <?php
     foreach ($noticias as $noticia) 
     {
-
 ?>
-<div class="row border">
-    <div class="col-md-2">
-        <?=$noticia['id']?>
+<div class="row border-bottom">
+    <div class="col-md-1">
+        <p class="small"><?=$noticia['id']?></p>
     </div>        
-    <div class="col-md-6">
+    <div class="col-md-9">
         <p class="small"><?=$noticia['titulo']?></p>
     </div>        
-    <div class="col-md-2">
+    <div class="col-md-1">
         <a href="addNews.php?acao=carregar&id=<?=$noticia['id']?>"
-    class="btn btn-primary">Carregar</a>
+    class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
     </div>     
-    <div class="col-md-2">
+    <div class="col-md-1">
     <a href="addNews.php?acao=excluir&id=<?=$noticia['id']?>"
-     class="btn btn-danger"
-     onclick="return confirm('Você está certo disso?');">Excluir</a>        
+     class="btn btn-sm btn-danger"
+     onclick="return confirm('Você está certo disso?');"><i class="fa fa-trash"></i></a>        
 </div>     
 </div>
 <?php 
     } 
 ?>
+</div>
 <?php 
     } 
 ?>
@@ -206,4 +212,7 @@
 </script>
 
 </body>
-</html>
+
+<?php 
+    include_once("footer.php"); 
+?>

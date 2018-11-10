@@ -67,9 +67,9 @@
                                         if(isset($_SESSION['id'])) 
                                         { 
                                             //include_once ("logout.php"); 
-                                        ?>
-                                        <li><a href="logout.php">Logout</a></li>
-                                        <li><a href="addNews.php">Adicionar</a></li>
+                                        ?>                                        
+                                        <li><a class="btn bg-transparent" href="addNews.php"><i class="fa fa-address-book text-dark"></i></a></li>
+                                        <li><a class="btn bg-transparent" href="logout.php"><i class="fa fa-power-off text-dark"></i></a></li>
                                         <?php 
                                         }
                                         ?>        
