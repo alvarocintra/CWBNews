@@ -1,55 +1,6 @@
 <?php
 
-    require_once "controle.php";   
-
-    $id = "";
-    $titulo = "";
-    $resumo = "";
-    $noticiaCompleta = "";
-    $fonte = "";
-    $autor = "";    
-    $dataPostagem = "";
-    $destaque = "";
-    $id_categoria = "";
-    $newsImg = "";
-    if(!empty($_FILES)) 
-    {
-        $caminho_arquivo = "D:\\xampp\\htdocs\\cwbnews\\img\\";
-         
-        $nome_arquivo = $_FILES['newsImg']['name'];
-         
-        move_uploaded_file($_FILES['newsImg']['tmp_name'], $caminho_arquivo.$nome_arquivo);
-         
-        $newsImg = 'img/'.$nome_arquivo;
-    }
-
-    if (!empty($_GET)) 
-    {
-        $id = $_GET['id'];
-        if ($_GET['acao'] == 'carregar') 
-        {
-            $noticia = buscarNoticia($id);
-            $titulo = $noticia['titulo'];
-            $dataPostagem = $noticia['dataPostagem'];
-            $resumo = $noticia['resumo'];
-            $noticiaCompleta = $noticia['noticiaCompleta'];
-            $autor = $noticia['autor'];
-            $newsImg = $noticia['newsImg'];            
-            $fonte = $noticia['fonte'];
-            $destaque = $noticia['destaque'];
-            $newsImg = $noticia['newsImg'];
-            $id_categoria = $noticia['id_categoria'];           
-        }
-        if ($_GET['acao'] == 'excluir') 
-        {
-            excluirNoticia($id);
-        }        
-    }
-
-    if(!empty($_POST)) 
-    {
-        $_POST['newsImg'] = $newsImg;
-    }
+    require_once "controle.php";
 
     $noticias = listarNoticias();
 
@@ -65,7 +16,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Newsbox - Modern Magazine &amp; Newspaper HTML Template</title>
+    <title>CWBNews - Site de notícias</title>
 
     <!-- Favicon -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -96,7 +47,7 @@
                     <nav class="classy-navbar justify-content-between" id="newsboxNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt="Portal de Notícias CWB News"></a>
+                        <a href="index.php" class="nav-brand"><img src="img/core-img/logo.png" alt="Portal de Notícias CWB News"></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -128,12 +79,7 @@
                                             <li><a href="index.html">Home</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Esportes</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Futebol</a></li>
-                                            <li><a href="#">Basquete</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="#">Esportes</a></li>
                                     <li><a href="#">Contato</a></li>
                                     <?php 
                                         session_start();
@@ -174,7 +120,7 @@
                     <!-- Breaking News Widget -->
                     <div class="breaking-news-ticker d-flex flex-wrap align-items-center">
                         <div class="title">
-                            <h6>Últimas notícias</h6>
+                            <h6>DESTAQUES</h6>
                         </div>
                         <div id="breakingNewsTicker" class="ticker">
                             <ul>
@@ -185,7 +131,7 @@
                                         {
                                 ?>
                                             <li>
-                                                <a href="showNews.php?id=<?=$noticia['id']?>">
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>">
                                                     <?=$noticia['titulo']?>
                                                 </a>
                                             </li>
@@ -224,142 +170,149 @@
                         <!-- INÍCIO TAB NOTÍCIAS -->
                         
                         <div class="tab-content" id="nav-tabContent">
-                        <?php
-                            foreach ($noticias as $noticia)
-                            {
-                        ?>    
-                            <?php                                                                
-                                if ($noticia['id_categoria']==1)
-                                {
-                            ?>
+                        
                             <!-- INÍCIO TAB NOTICIAS LOCAIS -->
                             <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav1">
                                 <div class="row">
+                                <?php
+                                    foreach ($noticias as $noticia)
+                                    {
+                                ?>    
+                                    <?php                                                                
+                                        if ($noticia['id_categoria']==1)
+                                        {
+                                    ?>
                                     <!-- Single News Area -->
                                     <div class="col-12 col-sm-6">
                                         <div class="single-blog-post style-2 mb-5">
                                             <!-- Blog Thumbnail -->
                                             <div class="blog-thumbnail">
-                                                <a href="showNews.php?id=<?=$id?>"><img src="<?=$noticias['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
+                                                <a href="showNews.phpshowNews.php?acao=carregar&id=<?=$noticia['id']?>"><img src="<?=$noticia['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
                                             </div>
                                             <!-- Blog Content -->
                                             <div class="blog-content">
                                                 <span class="post-date"><?=$noticia['dataPostagem']?></span>
-                                                <a href="#" class="post-title"><?=$noticia['titulo']?></a>
-                                                <p class="post-author">Por: <?=$noticia['titulo']?></p>
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="post-title"><?=$noticia['titulo']?></a>
+                                                <p class="post-author">Por: <?=$noticia['autor']?></p>
                                             </div>
                                         </div>
-                                    </div>                                    
+                                    </div>
+                                    <?php        
+                                        }
+                                    ?>
+                                    <?php
+                                        }
+                                    ?>                                    
                                 </div>
                             </div>
-                            <?php        
-                                }
-                            ?>
-                            <?php
-                                }
-                            ?>
-                            <?php
-                            foreach ($noticias as $noticia)
-                                {
-                            ?> 
-                            <?php                                                                
-                                if ($noticia['id_categoria']==2)
-                                    {
-                            ?>
+                            
+                            
                             <!-- INÍCIO TAB BRASIL -->                             
                             <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav2">
                                 <div class="row">
                                     <!-- Single News Area -->
+                                    <?php
+                                        foreach ($noticias as $noticia)
+                                        {
+                                    ?> 
+                                    <?php                                                                
+                                        if ($noticia['id_categoria']==2)
+                                        {
+                                    ?>
                                     <div class="col-12 col-sm-6">
                                         <div class="single-blog-post style-2 mb-5">
                                             <!-- Blog Thumbnail -->
                                             <div class="blog-thumbnail">
-                                                <a href="showNews.php?id=<?=$id?>"><img src="<?=$noticias['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>"><img src="<?=$noticia['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
                                             </div>
                                             <!-- Blog Content -->
                                             <div class="blog-content">
                                                 <span class="post-date"><?=$noticia['dataPostagem']?></span>
-                                                <a href="#" class="post-title"><?=$noticia['titulo']?></a>
-                                                <p class="post-author">Por: <?=$noticia['titulo']?></p>
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="post-title"><?=$noticia['titulo']?></a>
+                                                <p class="post-author">Por: <?=$noticia['autor']?></p>
                                             </div>
                                         </div>
-                                    </div> 
-                                </div>
-                            </div>
+                                    </div>
+                                    <?php        
+                                        }
+                                    ?>
                                 <?php        
                                     }
-                                ?>
-                            <?php        
-                                }
-                            ?>
-                            <?php
-                            foreach ($noticias as $noticia)
-                                {
-                            ?> 
-                            <?php                                                                
-                                if ($noticia['id_categoria']==3)
-                                    {
-                            ?>
+                                ?> 
+                                </div>
+                            </div>
+                                
+                            
                             <!-- INICIO TAB MUNDO -->
                             <div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav3">
                                 <div class="row">
+                                <?php
+                                    foreach ($noticias as $noticia)
+                                        {
+                                    ?> 
+                                    <?php                                                                
+                                        if ($noticia['id_categoria']==3)
+                                            {
+                                    ?>
                                     <!-- Single News Area -->
                                     <div class="col-12 col-sm-6">
                                         <div class="single-blog-post style-2 mb-5">
                                             <!-- Blog Thumbnail -->
                                             <div class="blog-thumbnail">
-                                                <a href="showNews.php?id=<?=$id?>"><img src="<?=$noticias['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>"><img src="<?=$noticia['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
                                             </div>
                                             <!-- Blog Content -->
                                             <div class="blog-content">
                                                 <span class="post-date"><?=$noticia['dataPostagem']?></span>
-                                                <a href="#" class="post-title"><?=$noticia['titulo']?></a>
-                                                <p class="post-author">Por: <?=$noticia['titulo']?></p>
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="post-title"><?=$noticia['titulo']?></a>
+                                                <p class="post-author">Por: <?=$noticia['autor']?></p>
                                             </div>
                                         </div>
                                     </div> 
+                                    <?php        
+                                            }
+                                        ?>
+                                        <?php        
+                                            }
+                                        ?>
                                 </div>
-                            </div>
-                            <?php        
-                                }
-                            ?>
-                            <?php        
-                                }
-                            ?>
-                        <?php
-                            foreach ($noticias as $noticia)
-                                {
-                        ?> 
-                            <?php                                                                
-                                if ($noticia['id_categoria']==4)
-                                    {
-                            ?>
+                            </div>                           
+                        
                             <!-- INICIO TAB ESPORTES -->
                             <div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav4">
                                 <div class="row">
+                                <?php
+                                    foreach ($noticias as $noticia)
+                                        {
+                                ?> 
+                                    <?php                                                                
+                                        if ($noticia['id_categoria']==4)
+                                            {
+                                    ?>
                                     <!-- Single News Area -->
                                     <div class="col-12 col-sm-6">
                                         <div class="single-blog-post style-2 mb-5">
                                             <!-- Blog Thumbnail -->
                                             <div class="blog-thumbnail">
-                                                <a href="showNews.php?id=<?=$id?>"><img src="<?=$noticias['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>"><img src="<?=$noticia['newsImg']?>" alt="<?=$noticia['titulo']?>"></a>
                                             </div>
                                             <!-- Blog Content -->
                                             <div class="blog-content">
                                                 <span class="post-date"><?=$noticia['dataPostagem']?></span>
-                                                <a href="#" class="post-title"><?=$noticia['titulo']?></a>
-                                                <p class="post-author">Por: <?=$noticia['titulo']?></p>
+                                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="post-title"><?=$noticia['titulo']?></a>
+                                                <p class="post-author">Por: <?=$noticia['autor']?></p>
                                             </div>
                                         </div>
                                     </div> 
+                                    <?php
+                                            }
+                                    ?>
+                                    <?php
+                                        }
+                                    ?> 
                                 </div>
                             </div>
-                                <?php
-                                    }
-                                ?>
-                            <?php
-                                }
-                            ?>              
+                                              
                         </div>                        
                     </div>
                 </div>
