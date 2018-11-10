@@ -74,12 +74,12 @@
     <title>Cadastro</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/navbar_sticky-footer-navbar.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 <body >
 
 <?php
-//include_once("header.php");
+    //include_once("header.php");
 ?>
 
 <main role="main" class="container">
@@ -116,11 +116,13 @@
     value="<?=$resumo?>"
      >
 </div>
+
 <div class="form-group">
     <label for="noticiaCompleta">Noticia Completa</label>
-    <input type="textarea" name="noticiaCompleta" class="form-control" 
-    id="noticiaCompleta" placeholder="Digite a notícia completa"    
-    value="<?=$noticiaCompleta?>">
+    <textarea id="noticiaCompleta" name="noticiaCompleta" class="form-control" 
+    placeholder="Digite a notícia completa" value="<?=$noticiaCompleta?>" 
+    onkeyup="countChar(this)">
+    </textarea>
 </div>
 <div class="form-group">
     <label for="id_categoria">Categoria</label>
@@ -168,39 +170,40 @@
 <input type="submit" value="Salvar" class="btn btn-primary" />
 </form>
 
-<table class="table">
-    <tr>
-        <th>ID</th>        
-        <th>NOME</th>        
-        <th>&nbsp;</th>    
-        <th>&nbsp;</th>    
-    </tr>
-    <?php
+<?php
+    foreach ($noticias as $noticia) 
+    {
 
-    foreach ($noticias as $noticia) {
-    
-    ?>
-    <tr>
-        <td><?=$noticia['id']?></td>        
-        <td><?=$noticia['titulo']?></td>        
-        <td><a href="addNews.php?acao=carregar&id=<?=$noticia['id']?>"
-        class="btn btn-primary">Carregar</a>
-        </td>     
-        <td>
-        <a href="addNews.php?acao=excluir&id=<?=$noticia['id']?>"
-         class="btn btn-danger"
-         onclick="return confirm('Você está certo disso?');">Excluir</a>        
-        </td>     
-    </tr>
-</table>
-<?php } ?>
-
-<?php } ?>
+?>
+<div class="row border">
+    <div class="col-md-2">
+        <?=$noticia['id']?>
+    </div>        
+    <div class="col-md-6">
+        <p class="small"><?=$noticia['titulo']?></p>
+    </div>        
+    <div class="col-md-2">
+        <a href="addNews.php?acao=carregar&id=<?=$noticia['id']?>"
+    class="btn btn-primary">Carregar</a>
+    </div>     
+    <div class="col-md-2">
+    <a href="addNews.php?acao=excluir&id=<?=$noticia['id']?>"
+     class="btn btn-danger"
+     onclick="return confirm('Você está certo disso?');">Excluir</a>        
+</div>     
+</div>
+<?php 
+    } 
+?>
+<?php 
+    } 
+?>
 
 </main>
     
 <script type="text/javascript" 
-    src="js/jquery-latest.min.js"></script>
+    src="js/jquery-latest.min.js">
+</script>
 
 </body>
 </html>

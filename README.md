@@ -1,4 +1,5 @@
-# CWBNews
-Trabalho final para matéria Desenvolvimento Php
+# CWB News
+
+Trabalho final para matéria Desenvolvimento de Sistemas com Php
 
 ## Em desenvolvimento
