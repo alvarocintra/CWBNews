@@ -95,15 +95,19 @@
     else 
     { 
 ?>
-<div class="container">
-    <div class="form-group text-center">
-        <h1>Cadastro de Noticia</h1>
+<div class="container border">
+    
+    <div class="row bg-secondary text-center">
+        <div class="col-md-12 text-center">
+            <h1 class="text-light">Cadastro de Notícia</h1>
+        </div>
     </div>
+    
     <form action="addNews.php" method="POST"
         enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?=$id?>"/>
     <div class="form-group">
-        <label for="titulo">Titulo</label>
+        <label style="margin-top:20px" for="titulo">Titulo</label>
         <input type="text" name="titulo" class="form-control" 
         id="titulo" placeholder="Digite o título"
         value="<?=$titulo?>"
@@ -117,12 +121,22 @@
         value="<?=$resumo?>"
         >
     </div>
+
     <div class="form-group">
         <label for="noticiaCompleta">Notícia Completa</label>
         <input type="text" id="noticiaCompleta" name="noticiaCompleta" class="form-control" 
         placeholder="Digite a notícia completa" value="<?=$noticiaCompleta?>" 
         >
-        <??>
+        <??> 
+        <!-- <input id="noticiaCompleta" value="<?=$noticiaCompleta?>" name="noticiaCompleta"></div> -->
+        <script>
+            $('#noticiaCompleta').summernote({
+                placeholder: 'Digite a notícia completa',
+                tabsize: 3,
+                height: 300                       
+            });
+            $('#noticiaCompleta').summernote('code', '<?=$noticiaCompleta?>');
+        </script>
     </div>
     <div class="form-group">
         <label for="id_categoria">Categoria</label>
@@ -170,32 +184,44 @@
     <div class="form-group text-center">
         <img src="<?=$newsImg?>" />
     </div>
-    <div class="form-group">
-        <input type="submit" value="Salvar" class="btn btn-primary" />
+    <div class="form-group text-right">
+        <input type="submit" value="Salvar" class="btn newsbox-btn w-100" />
     </div>
     </form>
 </div>
+<br/>
 <div class="container">
+    <div class="row bg-secondary border-bottom">
+        <div class="col-md-1 border-right">
+            <p class="text-light"><b>Id</b></p>
+        </div>        
+        <div class="col-md-5">
+            <p class="text-light"><b>Título da notícia</b></p>
+        </div>
+    </div>      
+</div>
+<div class="container">
+    
 <?php
     foreach ($noticias as $noticia) 
     {
 ?>
-<div class="row border-bottom">
-    <div class="col-md-1">
-        <p class="small"><?=$noticia['id']?></p>
-    </div>        
-    <div class="col-md-9">
-        <p class="small"><?=$noticia['titulo']?></p>
-    </div>        
-    <div class="col-md-1">
-        <a href="addNews.php?acao=carregar&id=<?=$noticia['id']?>"
-    class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+    <div class="row border-bottom" style="height:25px">
+        <div class="col-md-1 border-right">
+            <p class="small"><?=$noticia['id']?></p>
+        </div>        
+        <div class="col-md-9">
+            <p class="small"><?=$noticia['titulo']?></p>
+        </div>        
+        <div class="col-md-1">
+            <a href="addNews.php?acao=carregar&id=<?=$noticia['id']?>"
+        class="btn btn-sm btn-primary" style="margin:2px;padding:2px"><i class="fa fa-edit"></i></a>
+        </div>     
+        <div class="col-md-1">
+        <a href="addNews.php?acao=excluir&id=<?=$noticia['id']?>"
+         class="btn btn-sm btn-danger" style="margin:2px;padding:2px"
+         onclick="return confirm('Você está certo disso?');"><i class="fa fa-trash"></i></a>        
     </div>     
-    <div class="col-md-1">
-    <a href="addNews.php?acao=excluir&id=<?=$noticia['id']?>"
-     class="btn btn-sm btn-danger"
-     onclick="return confirm('Você está certo disso?');"><i class="fa fa-trash"></i></a>        
-</div>     
 </div>
 <?php 
     } 
@@ -210,7 +236,7 @@
 <script type="text/javascript" 
     src="js/jquery-latest.min.js">
 </script>
-
+<br/>
 </body>
 
 <?php 

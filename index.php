@@ -237,12 +237,12 @@
                             <p class="mt-30">Ao se cadastrar você concorda em receber nossas atualizações por e-mail.</p>
                         </div>
 
-                        <!-- Add Widget -->
+                        <!-- Add Widget 
                         <div class="single-widget-area add-widget mb-30">
                             <a href="#">
                                 <img src="img/bg-img/add3.png" alt="">
-                            </a>
-                        </div>
+                            </a> 
+                        </div>  -->
                     </div>
                 </div>
             </div>
@@ -251,126 +251,101 @@
     <!-- ##### Intro News Area End ##### -->
 
     <!-- ##### Video Area Start ##### -->
-    <section class="video-area bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/10.jpg);">
-        <div class="container">
-            <div class="row">
-                <!-- Featured Video Area -->
-                <div class="col-12">
-                    <div class="featured-video-area d-flex align-items-center justify-content-center">
-                        <div class="video-content text-center">
-                            <a href="#" class="video-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
-                            <span class="published-date">June 20, 2018</span>
-                            <h3 class="video-title">Traffic Problems in Time Square</h3>
+    <section class="video-area bg-img bg-overlay bg-fixed" style="background-image: url(img/bg-img/01.png);">
+        <div class="py-5">
+            <div class="container">
+                <div class="row">            
+                    <!-- Featured Video Area 
+                    <div class="col-12">
+                        <div class="featured-video-area d-flex align-items-center justify-content-center">
+                            <div class="video-content text-center">
+                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="btn"><i class="fa fa-note" aria-hidden="true"></i></a>
+                                <span class="published-date"><?=$noticia['dataPostagem']?></span>
+                                <h3 class="video-title"><a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="post-title"><?=$noticia['titulo']?></a></h3>
+                            </div>
+                        </div>
+                    </div> -->            
+                                        
+                    <div class="col-12">
+                        <!-- Video Slides -->
+                        <div class="video-slides owl-carousel">
+                        <?php
+                            foreach ($noticias as $noticia)
+                            {
+                        ?> 
+                            <?php                                                                
+                                if ($noticia['id_categoria']==1)
+                                {
+                            ?>
+                            <!-- Single News Area -->
+                            <div class="single-blog-post style-3">
+                                <!-- Blog Thumbnail -->
+                                <div class="blog-thumbnail">
+                                    <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>"><img src="<?=$noticia['newsImg']?>" alt=""></a>
+                                </div>
+                                <!-- Blog Content -->
+                                <div class="blog-content">
+                                    <span class="post-date"><?=$noticia['dataPostagem']?></span>
+                                    <p class="post-title"><?=$noticia['titulo']?></p>
+                                    <a href="#" class="post-author"><?=$noticia['autor']?></a>
+                                </div>
+                            </div>
+                                <?php 
+                                    }
+                                ?>
+                            <?php
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Video Slideshow -->
         <div class="video-slideshow py-5">
-            <div class="container">
-                <div class="row">
+        <div class="container">
+                <div class="row">            
+                    <!-- Featured Video Area 
+                    <div class="col-12">
+                        <div class="featured-video-area d-flex align-items-center justify-content-center">
+                            <div class="video-content text-center">
+                                <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="btn"><i class="fa fa-note" aria-hidden="true"></i></a>
+                                <span class="published-date"><?=$noticia['dataPostagem']?></span>
+                                <h3 class="video-title"><a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>" class="post-title"><?=$noticia['titulo']?></a></h3>
+                            </div>
+                        </div>
+                    </div> -->            
+                                        
                     <div class="col-12">
                         <!-- Video Slides -->
                         <div class="video-slides owl-carousel">
-
+                        <?php
+                            foreach ($noticias as $noticia)
+                            {
+                        ?> 
+                            <?php                                                                
+                                if ($noticia['id_categoria']==2)
+                                {
+                            ?>
                             <!-- Single News Area -->
                             <div class="single-blog-post style-3">
                                 <!-- Blog Thumbnail -->
                                 <div class="blog-thumbnail">
-                                    <a href="#"><img src="img/bg-img/11.jpg" alt=""></a>
-                                    <a href="#" class="video-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
+                                    <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>"><img src="<?=$noticia['newsImg']?>" alt=""></a>
                                 </div>
-
                                 <!-- Blog Content -->
                                 <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <p class="post-title">Elon Musk: Tesla worker admitted to sabotage</p>
-                                    <a href="#" class="post-author">By Michael Smith</a>
+                                    <span class="post-date"><?=$noticia['dataPostagem']?></span>
+                                    <p class="post-title"><?=$noticia['titulo']?></p>
+                                    <a href="#" class="post-author"><?=$noticia['autor']?></a>
                                 </div>
                             </div>
-
-                            <!-- Single News Area -->
-                            <div class="single-blog-post style-3">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <a href="#"><img src="img/bg-img/12.jpg" alt=""></a>
-                                    <a href="#" class="video-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                </div>
-
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <p class="post-title">Rachel Sm ith breaks down while discussing border crisis </p>
-                                    <a href="#" class="post-author">By Michael Smith</a>
-                                </div>
-                            </div>
-
-                            <!-- Single News Area -->
-                            <div class="single-blog-post style-3">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <a href="#"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    <a href="#" class="video-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                </div>
-
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <p class="post-title">Dow falls 287 points as trade war fears escalate</p>
-                                    <a href="#" class="post-author">By Michael Smith</a>
-                                </div>
-                            </div>
-
-                            <!-- Single News Area -->
-                            <div class="single-blog-post style-3">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <a href="#"><img src="img/bg-img/11.jpg" alt=""></a>
-                                    <a href="#" class="video-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                </div>
-
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <p class="post-title">Elon Musk: Tesla worker admitted to sabotage</p>
-                                    <a href="#" class="post-author">By Michael Smith</a>
-                                </div>
-                            </div>
-
-                            <!-- Single News Area -->
-                            <div class="single-blog-post style-3">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <a href="#"><img src="img/bg-img/12.jpg" alt=""></a>
-                                    <a href="#" class="video-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                </div>
-
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <p class="post-title">Rachel Sm ith breaks down while discussing border crisis </p>
-                                    <a href="#" class="post-author">By Michael Smith</a>
-                                </div>
-                            </div>
-
-                            <!-- Single News Area -->
-                            <div class="single-blog-post style-3">
-                                <!-- Blog Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <a href="#"><img src="img/bg-img/13.jpg" alt=""></a>
-                                    <a href="#" class="video-btn"><i class="fa fa-play" aria-hidden="true"></i></a>
-                                </div>
-
-                                <!-- Blog Content -->
-                                <div class="blog-content">
-                                    <span class="post-date">June 20, 2018</span>
-                                    <p class="post-title">Dow falls 287 points as trade war fears escalate</p>
-                                    <a href="#" class="post-author">By Michael Smith</a>
-                                </div>
-                            </div>
-
+                                <?php 
+                                    }
+                                ?>
+                            <?php
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -383,127 +358,49 @@
     <div class="top-news-area section-padding-100">
         <div class="container">
             <div class="row">
-
+                <?php 
+                    foreach ($noticias as $noticia)
+                    {
+                ?>
+                    
                 <!-- Single News Area -->
                 <div class="col-12 col-sm-6 col-lg-4">
                     <div class="single-blog-post style-2 mb-5">
                         <!-- Blog Thumbnail -->
                         <div class="blog-thumbnail">
-                            <a href="#"><img src="img/bg-img/4.jpg" alt=""></a>
+                            <a href="showNews.php?acao=carregar&id=<?=$noticia['id']?>"><img src="<?=$noticia['newsImg']?>" alt=""></a>
                         </div>
-
                         <!-- Blog Content -->
                         <div class="blog-content">
-                            <span class="post-date">June 20, 2018</span>
-                            <a href="#" class="post-title">Elon Musk: Tesla worker admitted to sabotage</a>
-                            <a href="#" class="post-author">By Michael Smith</a>
+                            <span class="post-date"><?=$noticia['dataPostagem']?></span>
+                            <a href="#" class="post-title"><?=$noticia['titulo']?></a>
+                            <a href="#" class="post-author"><?=$noticia['autor']?></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Single News Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-blog-post style-2 mb-5">
-                        <!-- Blog Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <a href="#"><img src="img/bg-img/5.jpg" alt=""></a>
-                        </div>
+                <?php
+                    }
+                ?>                
 
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <span class="post-date">June 20, 2018</span>
-                            <a href="#" class="post-title">Rachel Sm ith breaks down while discussing border crisis </a>
-                            <a href="#" class="post-author">By Michael Smith</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single News Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-blog-post style-2 mb-5">
-                        <!-- Blog Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <a href="#"><img src="img/bg-img/6.jpg" alt=""></a>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <span class="post-date">June 20, 2018</span>
-                            <a href="#" class="post-title">Dow falls 287 points as trade war fears escalate</a>
-                            <a href="#" class="post-author">By Michael Smith</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single News Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-blog-post style-2 mb-5">
-                        <!-- Blog Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <a href="#"><img src="img/bg-img/7.jpg" alt=""></a>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <span class="post-date">June 20, 2018</span>
-                            <a href="#" class="post-title">Elon Musk: Tesla worker admitted to sabotage</a>
-                            <a href="#" class="post-author">By Michael Smith</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single News Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-blog-post style-2 mb-5">
-                        <!-- Blog Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <a href="#"><img src="img/bg-img/8.jpg" alt=""></a>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <span class="post-date">June 20, 2018</span>
-                            <a href="#" class="post-title">Rachel Sm ith breaks down while discussing border crisis </a>
-                            <a href="#" class="post-author">By Michael Smith</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Single News Area -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="single-blog-post style-2 mb-5">
-                        <!-- Blog Thumbnail -->
-                        <div class="blog-thumbnail">
-                            <a href="#"><img src="img/bg-img/9.jpg" alt=""></a>
-                        </div>
-
-                        <!-- Blog Content -->
-                        <div class="blog-content">
-                            <span class="post-date">June 20, 2018</span>
-                            <a href="#" class="post-title">Dow falls 287 points as trade war fears escalate</a>
-                            <a href="#" class="post-author">By Michael Smith</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
+            <!--<div class="col-12">
                     <div class="load-more-button text-center">
                         <a href="#" class="btn newsbox-btn">Load More</a>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
     </div>
     <!-- ##### Top News Area End ##### -->
 
-    <!-- ##### Add Area Start ##### -->
+    <!-- ##### Add Area Start ##### 
     <div class="big-add-area mb-100">
         <div class="container-fluid">
             <a href="#"><img src="img/bg-img/add2.png" alt=""></a>
         </div>
     </div>
-    <!-- ##### Add Area End ##### -->
+     ##### Add Area End ##### -->
 
 <?php 
     include_once("footer.php"); 

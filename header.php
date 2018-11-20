@@ -14,8 +14,13 @@
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">  
+    <!-- Summernote -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 </head>
 
 <!-- ##### Header Area Start ##### -->
@@ -57,7 +62,7 @@
                                     </li>
                                     <li><a href="#">Entreterimento</a>
                                         <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="index.php">Home</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Esportes</a></li>
@@ -68,7 +73,7 @@
                                         { 
                                             //include_once ("logout.php"); 
                                         ?>                                        
-                                        <li><a class="btn bg-transparent" href="addNews.php"><i class="fa fa-address-book text-dark"></i></a></li>
+                                        <li><a class="btn bg-transparent" href="addNews.php"><i class="fa fa-plus-circle text-dark"></i></a></li>
                                         <li><a class="btn bg-transparent" href="logout.php"><i class="fa fa-power-off text-dark"></i></a></li>
                                         <?php 
                                         }
