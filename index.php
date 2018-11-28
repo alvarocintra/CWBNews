@@ -4,9 +4,9 @@
 
     $noticias = listarNoticias();
 
-?>
+    $emails = listarEmails();
 
-<body>
+?>
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">
@@ -228,15 +228,16 @@
                 <div class="col-12 col-sm-9 col-md-6 col-lg-4">
                     <div class="sidebar-area">
                         <!-- Newsletter Widget -->
+                        <form action="cadastroEmail.php" method="POST" enctype="multipart/form-data">
+                        <!-- <input type="hidden" name="id" value="<?=$email['id']?>"/> -->
                         <div class="single-widget-area newsletter-widget mb-30">
-                            <h4>Inscreva-se para receber nossas notícias</h4>
-                            <form action="#" method="post">
-                                <input type="email" name="nl-email" id="nlemail" placeholder="Seu E-mail">
+                            <h4>Inscreva-se para receber nossas notícias</h4>                            
+                                <input type="email" class="form-control w-100" name="email" id="email" placeholder="Seu E-mail">
                                 <button type="submit" class="btn newsbox-btn w-100">Inscreva-se</button>
-                            </form>
+                            
                             <p class="mt-30">Ao se cadastrar você concorda em receber nossas atualizações por e-mail.</p>
                         </div>
-
+                        </form>
                         <!-- Add Widget 
                         <div class="single-widget-area add-widget mb-30">
                             <a href="#">

@@ -4,10 +4,10 @@ session_start();
 
 require_once "controle.php";
 
-$login = $_POST['login'];
+$usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
 
-$retorno = validarLogin($login,$senha);
+$retorno = validarLogin($usuario,$senha);
 
 if(!empty($retorno))
 {
@@ -15,6 +15,7 @@ if(!empty($retorno))
 
     $adm = buscarLogin($id);
     $_SESSION['adm'] = $adm; 
+    $_SESSION['tipo'] = $adm['tipo'];
     
     header("location: session.php");
 }

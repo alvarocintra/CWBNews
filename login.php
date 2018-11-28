@@ -13,12 +13,12 @@
             <h1 class="display-3 text-center">Login</h1>        
             <form action="validarLogin.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="login">Login</label>
-                <input type="text" name="login" class="form-control" id="login" placeholder="Digite seu login" required>
+                <label for="usuario">Login</label>
+                <input type="text" name="usuario" class="form-control" id="usuario" placeholder="Digite seu usuário" required>
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite sua senha">
+                <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite sua senha" required>
             </div>
             <div class="form-group text-center">
                 <input type="submit" class="btn btn-primary" value="CONECTAR" style="width:100%"/>

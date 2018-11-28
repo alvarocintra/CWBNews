@@ -92,7 +92,7 @@
     {
         include_once("login.php");
     }
-    else 
+    else if ($_SESSION['id']==1)
     { 
 ?>
 <div class="container border">
@@ -228,7 +228,15 @@
 ?>
 </div>
 <?php 
-    } 
+    }
+    else
+    {
+?>
+    <div class="col-md-12 text-center">
+        <h6 class="text-danger">Área restrita para o Administrador.</h6>
+    </div>
+<?php
+    }
 ?>
 
 </main>

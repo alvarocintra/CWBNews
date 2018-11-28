@@ -1,3 +1,23 @@
+<?php
+        // if (!empty($_GET)) 
+        // {
+        //     $id = $_GET['id'];
+        //     if ($_GET['acao'] == 'carregar') 
+        //     {
+        //         $adm = buscarUsuario($id);
+        //         $nome = $adm['nome'];
+        //         $usuario = $adm['usuario'];
+        //         $senha = $adm['senha'];
+        //         $email = $adm['email'];          
+        //     }
+        //     if ($_GET['acao'] == 'excluir') 
+        //     {
+        //         excluirUsuario($id);
+        //     }
+        // }  
+
+        // $adms = listarUsuarios();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,30 +71,48 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
+                                    <li><a href="index.php">Início</a></li>
                                     <li><a href="#">Notícias</a>
                                         <div class="dropdown">
                                             <ul class="single-mega cn-col-4">
-                                                <li><a href="#">Locais</a></li>
-                                                <li><a href="#">Brasil</a></li>
-                                                <li><a href="#">Mundo</a></li>
+                                                <li><a href="locais.php">Locais</a></li>
+                                                <li><a href="brasil.php">Brasil</a></li>
+                                                <li><a href="mundo.php">Mundo</a></li>
                                             </ul>                                            
                                         </div>
-                                    </li>
-                                    <li><a href="#">Entreterimento</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.php">Home</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Esportes</a></li>
-                                    <li><a href="#">Contato</a></li>
-                                    <?php 
-                                        session_start();
+                                    </li>                                    
+                                    <li><a href="esportes.php">Esportes</a></li>
+                                    <li><a href="contato.php">Contato</a></li>
+                                    <?php
+                                        session_start(); 
+                                        if(!isset($_SESSION['id']))
+                                        {
+                                    ?>
+                                    <li><a href="cadastroUsuario.php">Cadastre-se</a></li>
+                                    <li><a href="login.php">Login</a></li>
+                                    <?php
+                                        }
+                                    ?>
+                                    <?php                                         
                                         if(isset($_SESSION['id'])) 
-                                        { 
-                                            //include_once ("logout.php"); 
-                                        ?>                                        
-                                        <li><a class="btn bg-transparent" href="addNews.php"><i class="fa fa-plus-circle text-dark"></i></a></li>
-                                        <li><a class="btn bg-transparent" href="logout.php"><i class="fa fa-power-off text-dark"></i></a></li>
+                                        {  
+                                        ?>
+                                        <?php
+                                            if($_SESSION['id']==1)
+                                            {
+                                        ?>
+                                            <li><a class="btn bg-transparent" href="addNews.php"><i class="fa fa-plus-circle text-dark"></i></a></li>
+                                            <li><a class="btn bg-transparent" href="logout.php"><i class="fa fa-power-off text-dark"></i></a></li>                                        
+                                        <?php
+                                            }
+                                            else
+                                            {
+                                        ?>
+                                            <li><a class="btn bg-transparent" href="user.php?acao=carregar&id=<?=$_SESSION['id']?>"><i class="fa fa-user text-dark"></i></a></li>
+                                            <li><a class="btn bg-transparent" href="logout.php"><i class="fa fa-power-off text-dark"></i></a></li>                                        
+                                        <?php
+                                            }
+                                        ?>                                      
                                         <?php 
                                         }
                                         ?>        
@@ -97,3 +135,4 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    <body>

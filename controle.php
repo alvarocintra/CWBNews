@@ -2,6 +2,8 @@
 
 require_once "DAO.php";
 
+
+//Noticias
 function salvarNoticia($noticia)  
 {  
     $conn = conectar();
@@ -92,12 +94,13 @@ function excluirNoticia($id)
     }    
 }
 
-function validarLogin($login,$senha)
+//Login
+function validarLogin($usuario,$senha)
 {
     $conn = conectar();
 
-    $stmt = $conn->prepare("select id from adm where login = :login and senha = :senha");
-    $stmt->bindParam(':login',$login);
+    $stmt = $conn->prepare("select id from adm where usuario = :usuario and senha = :senha");
+    $stmt->bindParam(':usuario',$usuario);
     $stmt->bindParam(':senha',$senha);
 
     $stmt->execute();
@@ -109,12 +112,13 @@ function buscarLogin($id)
 {
     $conn = conectar();
 
-    $stmt = $conn->prepare("select id, nome, login, senha from adm where id = :id");
+    $stmt = $conn->prepare("select id, nome, usuario, senha, email from adm where id = :id");
     $stmt->bindParam(':id',$id);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+//Categorias
 function listarCategorias() 
 {
     $conn = conectar();
@@ -134,4 +138,141 @@ function buscarCategoria($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+//USUÁRIO
+function salvarUsuario($adm)  
+{  
+    $conn = conectar();
+
+    if ($adm['id']==null)
+    {
+        $stmt = $conn->prepare("INSERT INTO adm (nome,usuario,senha,email) VALUES (:nome,:usuario,:senha,:email)");
+        $stmt->bindParam(':nome',$adm['nome']);
+        $stmt->bindParam(':usuario',$adm['usuario']);
+        $stmt->bindParam(':senha',$adm['senha']);
+        $stmt->bindParam(':email',$adm['email']);        
+
+        if($stmt->execute())
+        {
+            return "Usuario inserido com sucesso.";
+        } 
+        else 
+        {
+            print_r($stmt->errorInfo());
+            return "Erro. ";
+        }
+    }    
+}
+
+function editarUsuario($adm) 
+{
+    $conn = conectar();
+
+    $stmt = $conn->prepare("UPDATE adm set nome=:nome,usuario=:usuario,senha=:senha,email=:email where id = :id");
+    $stmt->bindParam(':nome',$adm['nome']);
+    $stmt->bindParam(':usuario',$adm['usuario']);
+    $stmt->bindParam(':senha',$adm['senha']);
+    $stmt->bindParam(':email',$adm['email']); 
+    if($stmt->execute()) 
+    {
+        return "Usuario atualizado com sucesso.";
+    } 
+    else 
+    {
+        print_r($stmt->errorInfo());
+        return "Erro. ";
+    }
+}
+
+function listarUsuarios() 
+{
+    $conn = conectar();
+
+    $stmt = $conn->prepare("select id, nome, usuario, email from adm order by id desc");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+function buscarUsuario($id) 
+{
+    $conn = conectar();
+
+    $stmt = $conn->prepare("select id, nome, usuario, email, tipoUsuario from adm where id= :id");
+    $stmt->bindParam(':id',$id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function excluirUsuario($id) 
+{
+    $conn = conectar();
+    
+    $stmt = $conn->prepare("delete from adm where id= :id");  
+    $stmt->bindParam(':id',$id);
+    if ($stmt->execute()) 
+    {
+        return $stmt->fetchAll();
+    } 
+    else 
+    {
+        print_r($stmt->errorInfo());
+        return "Erro. ";
+    }    
+}
+
+function salvarEmail($usuario)  
+{  
+    $conn = conectar();
+
+    // if ($usuario['id']==null)
+    // {
+        $stmt = $conn->prepare("INSERT INTO usuario (email) VALUES (:email)");
+        $stmt->bindParam(':email',$usuario['email']);      
+
+        if($stmt->execute())
+        {
+            return "Email cadastrado com sucesso.";
+        } 
+        else 
+        {
+            print_r($stmt->errorInfo());
+            return "Erro. ";
+        }
+    // }    
+}
+
+function editarEmail($usuario) 
+{
+    $conn = conectar();
+
+    $stmt = $conn->prepare("UPDATE usuario set email=:email where id = :id");
+    $stmt->bindParam(':email',$usuario['email']); 
+    if($stmt->execute()) 
+    {
+        return "Email atualizado com sucesso.";
+    } 
+    else 
+    {
+        print_r($stmt->errorInfo());
+        return "Erro. ";
+    }
+}
+
+function listarEmails() 
+{
+    $conn = conectar();
+
+    $stmt = $conn->prepare("select id, email from usuario order by id desc");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+function buscarEmail($id) 
+{
+    $conn = conectar();
+
+    $stmt = $conn->prepare("select id, email from usuario where id= :id");
+    $stmt->bindParam(':id',$id);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 ?>
